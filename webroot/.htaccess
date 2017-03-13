@@ -1,0 +1,22 @@
+Options +SymLinksIfOwnerMatch
+RewriteEngine on
+
+#v+数字形式表示版本定位到脚本上
+RewriteRule ^/.*$ /index.php [L]
+
+#非文件非目录定位到脚本上
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L]
+
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/x-icon A604800
+ExpiresByType application/javascript A604800
+ExpiresByType application/x-javascript A604800
+ExpiresByType text/javascript A604800
+ExpiresByType text/css A604800
+ExpiresByType image/gif A604800
+ExpiresByType image/png A604800
+ExpiresByType image/jpeg A604800
+</IfModule>

@@ -6,7 +6,8 @@
         "firstw/restore": "^1.0",
         "symfony/http-foundation": "^3.2",
         "monolog/monolog": "^1.22",
-        "filp/whoops": "^2.1"
+        "filp/whoops": "^2.1",
+        "cakephp/i18n": "^3.2"
     },
     "license": "MIT",
     "authors": [
