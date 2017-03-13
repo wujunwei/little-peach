@@ -7,4 +7,9 @@
  */
 
 
+use LittlePeach\Kernel;
+
 require_once("../frame/bootstrap.php");
+
+$kernel = new Kernel();
+$kernel->run();
