@@ -7,9 +7,15 @@
         "symfony/http-foundation": "^3.2",
         "monolog/monolog": "^1.22",
         "filp/whoops": "^2.1",
-        "cakephp/i18n": "^3.2"
+        "cakephp/i18n": "^3.2",
+        "symfony/config": "^3.2"
     },
     "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "LittlePeach\\": "./service/"
+        }
+    },
     "authors": [
         {
             "name": "adam123",
