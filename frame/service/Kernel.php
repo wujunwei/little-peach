@@ -15,4 +15,8 @@ class Kernel
     {
 
     }
+    public function run()
+    {
+
+    }
 }
