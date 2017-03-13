@@ -9,4 +9,4 @@ date_default_timezone_set('Asia/shanghai');
 //设置默认语言
 I18n::locale('en');
 $autoload = require_once(__DIR__."/vendor/autoload.php");
-$autoload->addPsr4("\\", "src");
+$autoload->addPsr4("App\\", "src");
