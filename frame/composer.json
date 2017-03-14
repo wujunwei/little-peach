@@ -8,12 +8,13 @@
         "monolog/monolog": "^1.22",
         "filp/whoops": "^2.1",
         "cakephp/i18n": "^3.2",
-        "symfony/config": "^3.2"
+        "symfony/config": "^3.2",
+        "league/event": "^2.1"
     },
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "LittlePeach\\": "./service/"
+            "LittlePeach\\": "./"
         }
     },
     "authors": [

@@ -6,8 +6,7 @@
  * Time: 下午 2:35
  */
 
-
-use LittlePeach\Kernel;
+use LittlePeach\Service\Kernel;
 
 require_once("../frame/bootstrap.php");
 

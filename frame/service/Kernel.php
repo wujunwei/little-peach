@@ -6,7 +6,7 @@
  * Time: 20:16
  */
 
-namespace LittlePeach;
+namespace LittlePeach\Service;
 
 
 class Kernel
