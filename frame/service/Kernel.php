@@ -15,10 +15,14 @@ use Whoops\Run;
 
 class Kernel
 {
-    private $debug;//todo 
+    private $debug;//todo LOG Cache Container MiddlewareAware (unset request) debug class
+    static private $debug_level = [
+        'DISPLAY_ERROR' => 0b01,
+    ];
     function __construct($debug = 0)
     {
-
+        $this->debug = $debug;
+        if ($debug)
         $this->registerErrorHandle();
     }
     public function run()
@@ -27,7 +31,7 @@ class Kernel
     }
 
     /**
-     *
+     *register Whoops component
      */
     private function registerErrorHandle()
     {
