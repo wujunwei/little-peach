@@ -9,14 +9,36 @@
 namespace LittlePeach\Service;
 
 
+use Symfony\Component\HttpFoundation\Request;
+use Whoops\Handler\PrettyPageHandler;
+use Whoops\Run;
+
 class Kernel
 {
-    function __construct()
+    private $debug;//todo 
+    function __construct($debug = 0)
     {
 
+        $this->registerErrorHandle();
     }
     public function run()
     {
-        phpinfo();
+        $request = Request::createFromGlobals();
     }
+
+    /**
+     *
+     */
+    private function registerErrorHandle()
+    {
+        $whoops = new Run;
+        $whoops->pushHandler(new PrettyPageHandler);
+        $whoops->register();
+    }
+
+    private function initRequest()
+    {
+
+    }
+
 }
