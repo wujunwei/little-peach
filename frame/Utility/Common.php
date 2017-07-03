@@ -9,10 +9,6 @@
 namespace LittlePeach\Utility;
 
 
-use Restore\Container;
-use Symfony\Component\HttpFoundation\Request;
-use Whoops\Handler\PrettyPageHandler;
-use Whoops\Run;
 
 class Common
 {
@@ -30,31 +26,9 @@ class Common
         return ROOT_PATH;
     }
 
-    static function createContainer()
+    static function getLogPath()
     {
-        return new Container();
-    }
-
-    static function createDelegate()
-    {
-        return new Delegate();
-    }
-
-    static function registerErrorHandle()
-    {
-        $whoops = new Run();
-        $whoops->pushHandler(new PrettyPageHandler);
-        $whoops->register();
-    }
-
-    /**
-     * @return Request
-     */
-    static function initRequest()
-    {
-        $request = Request::createFromGlobals();
-        unset($_REQUEST, $_SERVER, $_GET, $_POST, $_FILES);
-        return $request;
+        return LOG_PATH;
     }
 
 }
