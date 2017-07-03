@@ -4,7 +4,7 @@
     "type": "project",
     "require": {
         "firstw/restore": "^1.0",
-        "symfony/http-foundation": "^3.2",
+        "symfony/http-foundation": "^3.3",
         "monolog/monolog": "^1.22",
         "filp/whoops": "^2.1",
         "cakephp/i18n": "^3.2"
@@ -21,5 +21,8 @@
             "email": "wjw3323@live.com"
         }
     ],
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "config": {
+        "secure-http": false
+    }
 }
