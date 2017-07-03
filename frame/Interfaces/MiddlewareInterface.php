@@ -6,7 +6,7 @@
  * Time: 18:36
  */
 
-namespace LittlePeach\Service\Interfaces;
+namespace LittlePeach\Interfaces;
 
 
 use Symfony\Component\HttpFoundation\Request;

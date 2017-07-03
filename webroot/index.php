@@ -10,5 +10,5 @@ use LittlePeach\Service\Kernel;
 
 require_once("../frame/bootstrap.php");
 
-$kernel = new Kernel();
+$kernel = new Kernel(getenv('HTTP_LITTLEPEACHDEBUG') & 0x0F);
 $kernel->run();

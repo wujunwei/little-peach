@@ -7,8 +7,9 @@
  */
 
 namespace LittlePeach\Service\Middleware;
-use LittlePeach\Service\Interfaces\DelegateInterface;
-use LittlePeach\Service\Interfaces\MiddlewareInterface;
+
+use LittlePeach\Interfaces\DelegateInterface;
+use LittlePeach\Interfaces\MiddlewareInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
