@@ -1,20 +1,23 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: wjw33
- * Date: 2017-07-02
- * Time: 19:57
+ * User: Administrator
+ * Date: 2017-07-03
+ * Time: 上午 9:25
  */
 
 namespace LittlePeach\Service\Middleware;
 
+
 use LittlePeach\Interfaces\DelegateInterface;
 use LittlePeach\Interfaces\MiddlewareInterface;
+use LittlePeach\library\Log;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-abstract class Middleware implements MiddlewareInterface
+class errorHandleMiddleware implements MiddlewareInterface
 {
+
 
     /**
      * Process an incoming server request and return a response, optionally delegating
@@ -22,24 +25,19 @@ abstract class Middleware implements MiddlewareInterface
      *
      * @param Request $request
      * @param DelegateInterface $delegate
-     *
      * @return Response
      */
-    final function process(
+    public function process(
         Request $request,
         DelegateInterface $delegate
     )
     {
-        $this->run($request);
-        return $delegate->process($request);
-    }
-
-    /**
-     *  Perform actions specific to this middleware
-     * @param Request $request
-     */
-    public function run(Request $request)
-    {
+        try {
+            return $delegate->process($request);
+        }catch (\Throwable $e){
+            Log::getInstance()->onException($e);
+            return new Response('', 500);
+        }
 
     }
 }

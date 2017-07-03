@@ -42,13 +42,14 @@ class Log
         return Common::getLogPath() . DIRECTORY_SEPARATOR . $date . DIRECTORY_SEPARATOR . $fileName . '.log';
     }
 
-
-    /**
-     * @param \Throwable $error
-     */
-    public function onShutDown(\Throwable $error)
+    public function onShutDown()
     {
-
+        $lastError = error_get_last();
+        if (is_null($lastError)){
+            return;
+        }
+        $this->data = json_encode($lastError);
+        self::Log('shutDown', Logger::ALERT);
     }
 
     /**
@@ -60,7 +61,14 @@ class Log
      */
     public function onError($errno, $errstr, $errfile, $errline = '', $errcontext = '')
     {
-
+        $this->data = json_encode([
+            'errno' => $errno,
+            'errstr' => $errstr,
+            '$errfile' => $errfile,
+            'errline' => $errline,
+            'errcontext' => $errcontext
+        ]);
+        $this->Log('error', Logger::ERROR);
     }
 
     /**
@@ -68,12 +76,12 @@ class Log
      */
     public function onException(\Throwable $exception)
     {
-
+        $this->data = $exception->getTraceAsString();
+        $this->Log('exception', Logger::EMERGENCY);
     }
 
     public function Log($filename, $level = Logger::DEBUG)
     {
-        //todo logEntity
         self::$logger->pushHandler(new StreamHandler($this->getLogPath($filename), $level));
         self::$logger->log($level, $this->data);
     }

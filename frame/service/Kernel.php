@@ -8,9 +8,9 @@
 
 namespace LittlePeach\Service;
 
+use LittlePeach\Interfaces\MiddlewareInterface;
 use LittlePeach\library\Log;
-use LittlePeach\Service\Middleware\Middleware;
-use LittlePeach\Service\Middleware\RequestHandleMiddleware;
+use LittlePeach\Service\Middleware\errorHandleMiddleware;
 use LittlePeach\Utility\Delegate;
 use Restore\Container;
 use Symfony\Component\HttpFoundation\Request;
@@ -67,12 +67,8 @@ class Kernel
         set_error_handler(function ($errno, $errstr, $errfile, $errline = '', $errcontext = '') {
             Log::getInstance()->onError($errno, $errstr, $errfile, $errline, $errcontext);
         });
-        set_exception_handler(function (\Throwable $exception) {
-            Log::getInstance()->onException($exception);
-        });
         register_shutdown_function(function () {
-            $error = error_get_last();
-            Log::getInstance()->onShutDown($error);
+            Log::getInstance()->onShutDown();
         });
     }
 
@@ -99,7 +95,7 @@ class Kernel
 
     public function run()
     {
-        $this->dispatch(new RequestHandleMiddleware());
+        $this->dispatch(new errorHandleMiddleware());
         $this->delegate->process($this->request);
     }
 
@@ -116,7 +112,7 @@ class Kernel
         }
     }
 
-    public function dispatch(Middleware $middleware)
+    public function dispatch(MiddlewareInterface $middleware)
     {
         $this->delegate->enqueue($middleware);
     }
