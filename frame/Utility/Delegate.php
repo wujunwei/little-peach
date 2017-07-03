@@ -43,7 +43,7 @@ class Delegate implements DelegateInterface
             $this->middles->enqueue($middleware);
             $this->objPool->attach($middleware);
         }else{
-            throw new \InvalidArgumentException('The params get are not instance of MiddlewareInterface');
+            throw new \InvalidArgumentException('The params got are not instance of MiddlewareInterface');
         }
     }
 

@@ -7,42 +7,62 @@
  */
 
 namespace LittlePeach\Service;
-
-
+use LittlePeach\Service\Middleware\Middleware;
+use LittlePeach\Service\Middleware\RequestHandleMiddleware;
+use LittlePeach\Utility\Common;
+use LittlePeach\Utility\Delegate;
+use Restore\Container;
 use Symfony\Component\HttpFoundation\Request;
-use Whoops\Handler\PrettyPageHandler;
-use Whoops\Run;
 
 class Kernel
 {
-    private $debug;//todo LOG Cache Container MiddlewareAware (unset request) debug class
-    static private $debug_level = [
-        'DISPLAY_ERROR' => 0b01,
-    ];
-    function __construct($debug = 0)
+    private $debug;//todo LOG Cache Container
+    /**
+     * @var Delegate
+     */
+    private $delegate;
+    /**
+     * @var Container
+     */
+    private $container;
+    const DISPLAY_ERROR = 0b01;
+    const DISABLE_CACHE = 0b10;
+    const DISPLAY_SQL = 0b11;//todo remove for test
+    /**
+     * @var Request
+     */
+    private $request;
+    public function __construct($debug = 0)
     {
         $this->debug = $debug;
-        if ($debug)
-        $this->registerErrorHandle();
+        $this->delegate = Common::createDelegate();
+        $this->container = Common::createContainer();
+        $this->request = Common::initRequest();
+        if ($this->getDebugLevel(self::DISPLAY_ERROR)){
+            Common::registerErrorHandle();
+        }
     }
     public function run()
     {
-        $request = Request::createFromGlobals();
+        $this->dispatch(new RequestHandleMiddleware());
+        $this->delegate->process($this->request);
     }
 
     /**
-     *register Whoops component
+     * @param $type
+     * @return Boolean
      */
-    private function registerErrorHandle()
+    public function getDebugLevel($type)
     {
-        $whoops = new Run;
-        $whoops->pushHandler(new PrettyPageHandler);
-        $whoops->register();
+        if ($type & $this->debug){
+            return true;
+        }else{
+            return false;
+        }
     }
 
-    private function initRequest()
+    public function dispatch(Middleware $middleware)
     {
-
+        $this->delegate->enqueue($middleware);
     }
-
 }
