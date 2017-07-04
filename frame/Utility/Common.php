@@ -31,4 +31,9 @@ class Common
         return LOG_PATH;
     }
 
+    static function getConfigPath()
+    {
+        return CONFIG_PATH;
+    }
+
 }
