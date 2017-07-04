@@ -37,11 +37,10 @@ class errorHandleMiddleware implements MiddlewareInterface
     {
         try {
             if (Kernel::getInstance()->getDebugLevel(Kernel::DISPLAY_ERROR)){
-                echo 123;
                 $this->registerWhoopsHandle();
             }
             return $delegate->process($request);
-        }catch (\Throwable $e){
+        }catch (\Exception $e){
             Log::getInstance()->onException($e);
             return new Response('', 500);
         }
