@@ -11,6 +11,7 @@ namespace LittlePeach\Service;
 use LittlePeach\Interfaces\MiddlewareInterface;
 use LittlePeach\library\Log;
 use LittlePeach\Service\Middleware\errorHandleMiddleware;
+use LittlePeach\Service\Middleware\registerServiceMiddleware;
 use LittlePeach\Utility\Common;
 use LittlePeach\Utility\Config;
 use LittlePeach\Utility\Delegate;
@@ -19,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class Kernel
 {
-    private $debug;//todo Cache controller  business model
+    private $debug;//todo db controller  business model
     /**
      * @var Delegate
      */
@@ -96,7 +97,8 @@ class Kernel
     public function run()
     {
         $this->dispatch(new errorHandleMiddleware());
-        $this->delegate->process($this->request);throw new \Exception();
+        $this->dispatch(new registerServiceMiddleware());
+        $this->delegate->process($this->request);
     }
 
     /**
@@ -129,5 +131,13 @@ class Kernel
         }else{
             return $this->config[$key];
         }
+    }
+
+    /**
+     * @return Container
+     */
+    public function getContainer()
+    {
+        return $this->container;
     }
 }

@@ -9,7 +9,22 @@
 namespace LittlePeach\Base;
 
 
+use LittlePeach\Service\Kernel;
+
 class Business
 {
+    use CacheTrait;
 
+    /**
+     * @return \Restore\Container
+     */
+    public function getContainer()
+    {
+        return Kernel::getInstance()->getContainer();
+    }
+
+    public function getConfig($key = null)
+    {
+        return Kernel::getInstance()->getConfig($key);
+    }
 }
