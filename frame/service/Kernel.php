@@ -11,6 +11,8 @@ namespace LittlePeach\Service;
 use LittlePeach\Interfaces\MiddlewareInterface;
 use LittlePeach\library\Log;
 use LittlePeach\Service\Middleware\errorHandleMiddleware;
+use LittlePeach\Utility\Common;
+use LittlePeach\Utility\Config;
 use LittlePeach\Utility\Delegate;
 use Restore\Container;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +21,7 @@ use Whoops\Run;
 
 class Kernel
 {
-    private $debug;//todo LOG Cache Container
+    private $debug;//todo Cache controller  business model
     /**
      * @var Delegate
      */
@@ -39,6 +41,11 @@ class Kernel
      * @var Kernel
      */
     protected static $kernel;
+    /**
+     * @var Config
+     */
+    private $config;
+
     public function __construct($debug = 0)
     {
         $this->debug = $debug;
@@ -55,11 +62,9 @@ class Kernel
         return new Delegate();
     }
 
-    private function registerWhoopsHandle()
+    private function createConfig()
     {
-        $whoops = new Run();
-        $whoops->pushHandler(new PrettyPageHandler);
-        $whoops->register();
+        return new Config(Common::getConfigPath());
     }
 
     private function registerErrorHandle()
@@ -78,7 +83,6 @@ class Kernel
     private function initRequest()
     {
         $request = Request::createFromGlobals();
-        unset($_REQUEST, $_SERVER, $_GET, $_POST, $_FILES);
         return $request;
     }
 
@@ -86,17 +90,15 @@ class Kernel
     {
         $this->delegate = $this->createDelegate();
         $this->container = $this->createContainer();
+        $this->config = $this->createConfig();
         $this->request = $this->initRequest();
         $this->registerErrorHandle();
-        if ($this->getDebugLevel(self::DISPLAY_ERROR)){
-            $this->registerWhoopsHandle();
-        }
     }
 
     public function run()
     {
         $this->dispatch(new errorHandleMiddleware());
-        $this->delegate->process($this->request);
+        $this->delegate->process($this->request);throw new \Exception();
     }
 
     /**
@@ -117,8 +119,17 @@ class Kernel
         $this->delegate->enqueue($middleware);
     }
 
-    public function getInstance()
+    public static function getInstance()
     {
         return static::$kernel;
+    }
+
+    public function getConfig($key = null)
+    {
+        if (is_null($key)){
+            return $this->config;
+        }else{
+            return $this->config[$key];
+        }
     }
 }

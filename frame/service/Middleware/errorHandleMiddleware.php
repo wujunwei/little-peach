@@ -12,8 +12,11 @@ namespace LittlePeach\Service\Middleware;
 use LittlePeach\Interfaces\DelegateInterface;
 use LittlePeach\Interfaces\MiddlewareInterface;
 use LittlePeach\library\Log;
+use LittlePeach\Service\Kernel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Whoops\Handler\PrettyPageHandler;
+use Whoops\Run;
 
 class errorHandleMiddleware implements MiddlewareInterface
 {
@@ -33,11 +36,21 @@ class errorHandleMiddleware implements MiddlewareInterface
     )
     {
         try {
+            if (Kernel::getInstance()->getDebugLevel(Kernel::DISPLAY_ERROR)){
+                echo 123;
+                $this->registerWhoopsHandle();
+            }
             return $delegate->process($request);
         }catch (\Throwable $e){
             Log::getInstance()->onException($e);
             return new Response('', 500);
         }
+    }
 
+    private function registerWhoopsHandle()
+    {
+        $whoops = new Run();
+        $whoops->pushHandler(new PrettyPageHandler);
+        $whoops->register();
     }
 }
