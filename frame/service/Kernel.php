@@ -16,8 +16,6 @@ use LittlePeach\Utility\Config;
 use LittlePeach\Utility\Delegate;
 use Restore\Container;
 use Symfony\Component\HttpFoundation\Request;
-use Whoops\Handler\PrettyPageHandler;
-use Whoops\Run;
 
 class Kernel
 {
