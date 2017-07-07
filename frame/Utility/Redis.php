@@ -20,8 +20,9 @@ class Redis
     private $prefix = '';
     public function __construct()
     {
-        $this->prefix = Kernel::getInstance()->getConfig('prefix');
+
         $config = Kernel::getInstance()->getConfig('redis');
+        $this->prefix = $config['prefix'];
         $this->client = new \Redis();
         $this->client->connect($config['host'], $config['port']);
     }

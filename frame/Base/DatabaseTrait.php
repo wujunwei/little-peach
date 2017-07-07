@@ -19,6 +19,11 @@ trait DatabaseTrait{
      * @var Connection
      */
     private $connection = null;
+
+
+    /**
+     * @return Model
+     */
     public function loadDB()
     {
         $this->connection = Kernel::getInstance()->getContainer()->get('database');
@@ -31,14 +36,28 @@ trait DatabaseTrait{
 
     /**
      * @param $table
+     * @param null $alias
      * @return QueryBuilder
      */
-    public function update($table)
+    public function update($table, $alias = null)
     {
         if (empty($table)){
             return null;
         }
-        return $this->connection->createQueryBuilder()->update($this->getTable($table));
+        return $this->connection->createQueryBuilder()->update($this->getTable($table), $alias);
+    }
+
+    /**
+     * @param $table
+     * @param null $alias
+     * @return QueryBuilder
+     */
+    public function delete($table, $alias = null)
+    {
+        if (empty($table)){
+            return null;
+        }
+        return $this->connection->createQueryBuilder()->delete($this->getTable($table), $alias);
     }
 
     /**
@@ -53,13 +72,33 @@ trait DatabaseTrait{
         return $this->connection->createQueryBuilder()->insert($this->getTable($table));
     }
 
-    public function select($field = '*')
+    public function selectFrom($field = '*', $table = '', $alias = null)
     {
-        return $this->connection->createQueryBuilder()->select($field);//todo add table
+        return $this->connection->createQueryBuilder()
+            ->select($field)
+            ->from($this->getTable($table), $alias);//todo add table
     }
 
     private function getTable($table = '')
     {
         return $this->prefix.$table;
+    }
+
+    /**
+     * 开始事务
+     */
+    public function beginTransaction()
+    {
+        $this->connection->beginTransaction();
+    }
+
+    public function commit()
+    {
+        $this->connection->commit();
+    }
+
+    public function rollback()
+    {
+        $this->connection->rollBack();
     }
 }
