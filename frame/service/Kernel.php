@@ -9,6 +9,7 @@
 namespace LittlePeach\Service;
 
 use LittlePeach\Base\Business;
+use LittlePeach\Base\Model;
 use LittlePeach\Interfaces\MiddlewareInterface;
 use LittlePeach\library\Log;
 use LittlePeach\Service\Middleware\errorHandleMiddleware;
@@ -100,8 +101,8 @@ class Kernel
         $this->dispatch(new errorHandleMiddleware());
         $this->dispatch(new registerServiceMiddleware());
         $this->delegate->process($this->request);
-//        echo (new Business())->loadCache()->get('test');
         echo (new Business())->loadCache()->get('test');
+        echo (new Model())->loadDB()->update('test');
     }
 
     /**

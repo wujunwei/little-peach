@@ -9,7 +9,6 @@
 namespace LittlePeach\Service\Middleware;
 
 
-use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\DriverManager;
 use LittlePeach\Interfaces\DelegateInterface;
 use LittlePeach\Interfaces\MiddlewareInterface;
@@ -39,7 +38,6 @@ class registerServiceMiddleware implements MiddlewareInterface
         });
         Kernel::getInstance()->getContainer()->addFactory('database', function(){
             $db_config = Kernel::getInstance()->getConfig('db');
-            $config = new Configuration();
             $connectionParams = array(
                 'dbname' => $db_config['db_name'],
                 'user' => $db_config['db_user'],
@@ -50,7 +48,7 @@ class registerServiceMiddleware implements MiddlewareInterface
                 'driver' => 'pdo_mysql',
                 'charset' => 'utf8'
             );
-            return DriverManager::getConnection($connectionParams, $config);
+            return DriverManager::getConnection($connectionParams);
         });
         return $delegate->process($request);
     }
