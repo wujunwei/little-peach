@@ -33,7 +33,6 @@ class Kernel
     private $container;
     const DISPLAY_ERROR = 0b01;
     const DISABLE_CACHE = 0b10;
-    const DISPLAY_SQL = 0b11;//todo remove for test
     /**
      * @var Request
      */

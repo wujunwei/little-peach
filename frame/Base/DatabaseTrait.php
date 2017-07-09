@@ -22,7 +22,7 @@ trait DatabaseTrait{
 
 
     /**
-     * @return Model
+     * @return $this
      */
     public function loadDB()
     {
@@ -76,7 +76,12 @@ trait DatabaseTrait{
     {
         return $this->connection->createQueryBuilder()
             ->select($field)
-            ->from($this->getTable($table), $alias);//todo add table
+            ->from($this->getTable($table), $alias);
+    }
+
+    public function selectFromJoin($field = '*', $table = '', $alias = null, $fromAlias, $join, $joinAlias, $condition = null)
+    {
+        return $this->selectFrom($field, $table, $alias)->leftJoin($fromAlias, $join, $joinAlias, $condition);
     }
 
     private function getTable($table = '')
