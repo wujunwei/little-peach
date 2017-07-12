@@ -42,7 +42,7 @@ class errorHandleMiddleware implements MiddlewareInterface
             return $delegate->process($request);
         }catch (\Exception $e){
             Log::getInstance()->onException($e);
-            return new Response('', 500);
+            return new Response('Some thing bad happened!!', 500);
         }
     }
 
