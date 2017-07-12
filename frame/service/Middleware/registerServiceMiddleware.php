@@ -53,19 +53,20 @@ class registerServiceMiddleware implements MiddlewareInterface
                 'driver' => 'pdo_mysql',
                 'charset' => 'utf8'
             );
-            //add twig container
-            Kernel::getInstance()->getContainer()->addFactory('Twig', function (){
-                $loader = new Twig_Loader_Filesystem(Common::getTemplatePath());
-                $config = [
-                    'cache' => Common::getCachePath(),
-                ];
-                if (Kernel::getInstance()->getDebugLevel(Kernel::VIEW_DEBUG)){
-                    $config['debug'] = true;
-                    $config['strict_variables'] = true;
-                }
-                return new Twig_Environment($loader, $config);
-            });
             return DriverManager::getConnection($connectionParams);
+        });
+
+        //add twig container
+        Kernel::getInstance()->getContainer()->addFactory('Twig', function (){
+            $loader = new Twig_Loader_Filesystem(Common::getTemplatePath());
+            $config = [
+                'cache' => Common::getCachePath(),
+            ];
+            if (Kernel::getInstance()->getDebugLevel(Kernel::VIEW_DEBUG)){
+                $config['debug'] = true;
+                $config['strict_variables'] = true;
+            }
+            return new Twig_Environment($loader, $config);
         });
         return $delegate->process($request);
     }
