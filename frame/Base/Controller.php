@@ -25,12 +25,18 @@ class Controller
     /**
      * @param array|string $content
      * @param int $code
+     * @param null $message
      */
-    public function sendResponse($content = '', $code = 200)
+    public function sendResponse($content = '', $code = 200, $message = null)
     {
         if ($this->component === null && is_array($content)){
-            $response = new JsonResponse($content, $code);
-        }else if($code === Response::HTTP_SEE_OTHER || $code === Response::HTTP_FOUND){
+            $data = [
+                'code' => $code,
+                'msg' => $message ? $message:'',
+                'info' => empty($content) ? null: $content
+            ];
+            $response = new JsonResponse($data, $code);
+        }else if($code >= 300 && $code <= 400){
             $response = new RedirectResponse($content, $code);
         }else{
             $response = new Response($content, $code);
