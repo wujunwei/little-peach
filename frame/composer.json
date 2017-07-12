@@ -8,7 +8,8 @@
         "monolog/monolog": "^1.22",
         "filp/whoops": "^2.1",
         "doctrine/dbal": "^2.5",
-        "cakephp/i18n": "^3.2"
+        "cakephp/i18n": "^3.2",
+        "twig/twig": "^1.34"
     },
     "license": "MIT",
     "autoload": {

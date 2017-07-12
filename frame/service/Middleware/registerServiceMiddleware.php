@@ -13,9 +13,12 @@ use Doctrine\DBAL\DriverManager;
 use LittlePeach\Interfaces\DelegateInterface;
 use LittlePeach\Interfaces\MiddlewareInterface;
 use LittlePeach\Service\Kernel;
+use LittlePeach\Utility\Common;
 use LittlePeach\Utility\Redis;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Twig_Environment;
+use Twig_Loader_Filesystem;
 
 class registerServiceMiddleware implements MiddlewareInterface
 {
@@ -33,9 +36,11 @@ class registerServiceMiddleware implements MiddlewareInterface
         DelegateInterface $delegate
     )
     {
+        //add redis container
         Kernel::getInstance()->getContainer()->addFactory('redis', function (){
             return new Redis();
         });
+        //add db container
         Kernel::getInstance()->getContainer()->addFactory('database', function(){
             $db_config = Kernel::getInstance()->getConfig('db');
             $connectionParams = array(
@@ -48,6 +53,18 @@ class registerServiceMiddleware implements MiddlewareInterface
                 'driver' => 'pdo_mysql',
                 'charset' => 'utf8'
             );
+            //add twig container
+            Kernel::getInstance()->getContainer()->addFactory('Twig', function (){
+                $loader = new Twig_Loader_Filesystem(Common::getTemplatePath());
+                $config = [
+                    'cache' => Common::getCachePath(),
+                ];
+                if (Kernel::getInstance()->getDebugLevel(Kernel::VIEW_DEBUG)){
+                    $config['debug'] = true;
+                    $config['strict_variables'] = true;
+                }
+                return new Twig_Environment($loader, $config);
+            });
             return DriverManager::getConnection($connectionParams);
         });
         return $delegate->process($request);

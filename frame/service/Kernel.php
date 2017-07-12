@@ -33,6 +33,7 @@ class Kernel
     private $container;
     const DISPLAY_ERROR = 0b01;
     const DISABLE_CACHE = 0b10;
+    const VIEW_DEBUG = 0b11;
     /**
      * @var Request
      */

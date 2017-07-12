@@ -36,4 +36,13 @@ class Common
         return CONFIG_PATH;
     }
 
+    static function getCachePath()
+    {
+        return CACHE_PATH;
+    }
+    static function getTemplatePath()
+    {
+        return TEMPLATE_PATH;
+    }
+
 }
