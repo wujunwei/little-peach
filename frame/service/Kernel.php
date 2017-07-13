@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class Kernel
 {
-    private $debug;//todo db controller  business model
+    private $debug;
     /**
      * @var Delegate
      */
