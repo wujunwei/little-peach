@@ -72,9 +72,9 @@ class Log
     }
 
     /**
-     * @param \Throwable $exception
+     * @param \Exception|\Throwable $exception
      */
-    public function onException(\Throwable $exception)
+    public function onException(\Exception $exception)
     {
         $this->data = $exception->getTraceAsString();
         $this->Log('exception', Logger::EMERGENCY);
