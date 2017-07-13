@@ -16,7 +16,7 @@ class World extends Controller
      public function say()
      {
 //         $name = $this->request->query->get('name', 'adam');
-         var_dump($this->loadBusiness('Test')); 
+         var_dump($this->loadBusiness('Test')->test()); 
         return $this->createResponse(' hello, ');
      }
 }

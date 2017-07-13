@@ -37,6 +37,14 @@ class Kernel
      * @var Request
      */
     private $request;
+
+    /**
+     * @return Request
+     */
+    public function getRequest()
+    {
+        return $this->request;
+    }
     /**
      * @var Kernel
      */

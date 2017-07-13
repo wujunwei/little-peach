@@ -9,6 +9,7 @@
 namespace LittlePeach\library;
 
 
+use LittlePeach\Service\Kernel;
 use LittlePeach\Utility\Common;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -31,7 +32,7 @@ class Log
             self::$_instance = new self();
         }
         if (self::$logger === null){
-            self::$logger = new Logger('Log-system');
+            self::$logger = new Logger('_log-system');
         }
         return self::$_instance;
     }
@@ -49,7 +50,7 @@ class Log
             return;
         }
         $this->data = json_encode($lastError);
-        self::Log('shutDown', Logger::ALERT);
+        self::_log('shutDown', Logger::ALERT);
     }
 
     /**
@@ -68,7 +69,7 @@ class Log
             'errline' => $errline,
             'errcontext' => $errcontext
         ]);
-        $this->Log('error', Logger::ERROR);
+        $this->_log('error', Logger::ERROR);
     }
 
     /**
@@ -77,11 +78,18 @@ class Log
     public function onException(\Exception $exception)
     {
         $this->data = $exception->getTraceAsString();
-        $this->Log('exception', Logger::EMERGENCY);
+        $this->_log('exception', Logger::EMERGENCY);
     }
 
-    public function Log($filename, $level = Logger::DEBUG)
+    public function log($content)
     {
+        $this->data = (string)$content;
+        $this->_log('exception', Logger::INFO);
+    }
+
+    public function _log($filename, $level = Logger::DEBUG)
+    {
+        $this->data = Kernel::getInstance()->getRequest(). PHP_EOL. $this->data;
         self::$logger->pushHandler(new StreamHandler($this->getLogPath($filename), $level));
         self::$logger->log($level, $this->data);
     }
