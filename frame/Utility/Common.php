@@ -40,9 +40,32 @@ class Common
     {
         return CACHE_PATH;
     }
+
     static function getTemplatePath()
     {
         return TEMPLATE_PATH;
+    }
+
+    static function getAppRootNameSpace()
+    {
+        return APP_ROOT_SPACE;
+    }
+
+    static function getModuleName($class)
+    {
+        $reflection = new \ReflectionClass($class);
+        return $reflection->getNamespaceName();
+    }
+
+    static function getModuleNameSpace($class, $service, $module)
+    {
+        $path = explode('.', $service);
+        if (count($path) == 1){
+            $namespace = self::getModuleName($class)."\\{$module}\\".$service;
+        }else{
+            $namespace = self::getAppRootNameSpace()."{$path[0]}\\{$module}\\{$path[1]}";
+        }
+        return $namespace;
     }
 
 }

@@ -10,6 +10,7 @@ namespace LittlePeach\Base;
 
 
 use LittlePeach\Service\Kernel;
+use LittlePeach\Utility\Common;
 
 class Business
 {
@@ -26,5 +27,17 @@ class Business
     public function getConfig($key = null)
     {
         return Kernel::getInstance()->getConfig($key);
+    }
+
+    public function loadBusiness($business)
+    {
+        $namespace = Common::getModuleNameSpace($this, $business, 'Business');
+        return $this->getContainer()->get($namespace);
+    }
+
+    public function loadModel($model)
+    {
+        $namespace = Common::getModuleNameSpace($this, $model, 'Model');
+        return $this->getContainer()->get($namespace);
     }
 }

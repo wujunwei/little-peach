@@ -3,7 +3,7 @@
     "description": "a simple php frame",
     "type": "project",
     "require": {
-        "firstw/restore": "^1.0",
+        "firstw/restore": "^1.2",
         "symfony/http-foundation": "^3.3",
         "monolog/monolog": "^1.22",
         "filp/whoops": "^2.1",

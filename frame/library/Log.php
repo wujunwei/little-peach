@@ -64,7 +64,7 @@ class Log
         $this->data = json_encode([
             'errno' => $errno,
             'errstr' => $errstr,
-            '$errfile' => $errfile,
+            'errfile' => $errfile,
             'errline' => $errline,
             'errcontext' => $errcontext
         ]);

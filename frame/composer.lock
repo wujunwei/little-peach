@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "468baa6b889881906929fae29af39b2f",
+    "content-hash": "eee80f0be2d0ebadb98283fcf42ff469",
     "packages": [
         {
             "name": "aura/intl",
@@ -111,7 +111,7 @@
         },
         {
             "name": "cakephp/core",
-            "version": "3.4.9",
+            "version": "3.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/core.git",
@@ -157,16 +157,16 @@
         },
         {
             "name": "cakephp/i18n",
-            "version": "3.4.9",
+            "version": "3.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/i18n.git",
-                "reference": "d1850ef742bc975b5202886b9d1843e014d2a4f7"
+                "reference": "77a5a37faa97eb1c7955e0849bb31ce1128b9a3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/i18n/zipball/d1850ef742bc975b5202886b9d1843e014d2a4f7",
-                "reference": "d1850ef742bc975b5202886b9d1843e014d2a4f7",
+                "url": "https://api.github.com/repos/cakephp/i18n/zipball/77a5a37faa97eb1c7955e0849bb31ce1128b9a3c",
+                "reference": "77a5a37faa97eb1c7955e0849bb31ce1128b9a3c",
                 "shasum": ""
             },
             "require": {
@@ -211,11 +211,11 @@
                 "number",
                 "translation"
             ],
-            "time": "2017-06-20T00:34:15+00:00"
+            "time": "2017-07-06T11:01:32+00:00"
         },
         {
             "name": "cakephp/utility",
-            "version": "3.4.9",
+            "version": "3.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/utility.git",
@@ -852,16 +852,16 @@
         },
         {
             "name": "firstw/restore",
-            "version": "v1.1",
+            "version": "v1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wujunwei/Restore.git",
-                "reference": "8778171943a08e0a644a8eb2d14c49595b3f50b1"
+                "reference": "3dade631fa8f24359b98db47ce37a7dad62b80bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wujunwei/Restore/zipball/8778171943a08e0a644a8eb2d14c49595b3f50b1",
-                "reference": "8778171943a08e0a644a8eb2d14c49595b3f50b1",
+                "url": "https://api.github.com/repos/wujunwei/Restore/zipball/3dade631fa8f24359b98db47ce37a7dad62b80bb",
+                "reference": "3dade631fa8f24359b98db47ce37a7dad62b80bb",
                 "shasum": ""
             },
             "require": {
@@ -882,7 +882,7 @@
                 }
             ],
             "description": "a Denpdency Injection container",
-            "time": "2017-07-03T06:41:05+00:00"
+            "time": "2017-07-13T06:45:15+00:00"
         },
         {
             "name": "monolog/monolog",

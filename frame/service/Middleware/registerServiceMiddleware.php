@@ -57,7 +57,7 @@ class registerServiceMiddleware implements MiddlewareInterface
         });
 
         //add twig container
-        Kernel::getInstance()->getContainer()->addFactory('Twig', function (){
+        Kernel::getInstance()->getContainer()->addFactory('twig', function (){
             $loader = new Twig_Loader_Filesystem(Common::getTemplatePath());
             $config = [
                 'cache' => Common::getCachePath(),

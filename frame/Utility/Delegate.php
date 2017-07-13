@@ -23,14 +23,14 @@ class Delegate implements DelegateInterface
     private $middles;
 
     /**
-     * @var \SplObjectStorage
+     * @var array
      */
     private $objPool;
 
     public function __construct()
     {
         $this->middles = new \SplQueue();
-        $this->objPool = new \SplObjectStorage();
+        $this->objPool = [];
     }
 
     /**
@@ -39,9 +39,10 @@ class Delegate implements DelegateInterface
      */
     public function enqueue(MiddlewareInterface $middleware)
     {
-        if ($middleware instanceof MiddlewareInterface && !$this->objPool->contains($middleware)){
+        $className = get_class($middleware);
+        if ($middleware instanceof MiddlewareInterface && !isset($this->objPool[$className])){
             $this->middles->enqueue($middleware);
-            $this->objPool->attach($middleware);
+            $this->objPool[$className] = 1;
         }else{
             throw new \InvalidArgumentException('The params got are not instance of MiddlewareInterface');
         }
@@ -75,8 +76,12 @@ class Delegate implements DelegateInterface
                 throw new \BadMethodCallException(sprintf('\'process\' Method noe exist on \'%s\' class', get_class($request)));
             }
         }else{
-            $response = new Request();
+            $response = new Response();
         }
-        return $response;
+        if ($response instanceof Response){
+            return $response;
+        }else{
+            return new Response('', 500);
+        }
     }
 }

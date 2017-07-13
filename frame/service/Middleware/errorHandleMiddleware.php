@@ -40,7 +40,7 @@ class errorHandleMiddleware implements MiddlewareInterface
                 $this->registerWhoopsHandle();
             }
             return $delegate->process($request);
-        }catch (\Exception $e){
+        }catch (\Throwable $e){
             Log::getInstance()->onException($e);
             return new Response('Some thing bad happened!!', 500);
         }
