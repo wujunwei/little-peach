@@ -8,11 +8,10 @@
 
 namespace LittlePeach\Service;
 
-use LittlePeach\Base\Business;
-use LittlePeach\Base\Model;
 use LittlePeach\Interfaces\MiddlewareInterface;
 use LittlePeach\library\Log;
 use LittlePeach\Service\Middleware\errorHandleMiddleware;
+use LittlePeach\Service\Middleware\handleRequestMiddleware;
 use LittlePeach\Service\Middleware\registerServiceMiddleware;
 use LittlePeach\Utility\Common;
 use LittlePeach\Utility\Config;
@@ -83,8 +82,7 @@ class Kernel
      */
     private function initRequest()
     {
-        $request = Request::createFromGlobals();
-        return $request;
+        return Request::createFromGlobals();
     }
 
     private function init()
@@ -100,9 +98,8 @@ class Kernel
     {
         $this->dispatch(new errorHandleMiddleware());
         $this->dispatch(new registerServiceMiddleware());
-        $this->delegate->process($this->request);
-        echo (new Business())->loadCache()->get('test');
-        echo (new Model())->loadDB()->update('test');
+        $this->dispatch(new handleRequestMiddleware());
+        $this->delegate->process($this->request)->send();
     }
 
     /**

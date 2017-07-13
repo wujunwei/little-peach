@@ -10,6 +10,7 @@ namespace LittlePeach\Service\Middleware;
 
 use LittlePeach\Interfaces\DelegateInterface;
 use LittlePeach\Interfaces\MiddlewareInterface;
+use LittlePeach\library\Log;
 use LittlePeach\Service\Kernel;
 use LittlePeach\Utility\Common;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,7 +46,8 @@ class handleRequestMiddleware implements MiddlewareInterface
                 throw new \BadMethodCallException('Can not find it anywhere !');
             }
         }catch (\Exception $e){
-            return new Response($e->getMessage(), 404);
+            Log::getInstance()->onException($e);
+            return new Response('Can not find it anywhere !', 404);
         }
         return $_instance->$action($request);
     }
