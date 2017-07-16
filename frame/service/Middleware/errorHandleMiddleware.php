@@ -35,15 +35,11 @@ class errorHandleMiddleware implements MiddlewareInterface
         DelegateInterface $delegate
     )
     {
-        try {
-            if (Kernel::getInstance()->getDebugLevel(Kernel::DISPLAY_ERROR)){
-                $this->registerWhoopsHandle();
-            }
-            return $delegate->process($request);
-        }catch (\Exception $e){
-            Log::getInstance()->onException($e);
-            return new Response('Some thing bad happened!!', 500);
+
+        if (Kernel::getInstance()->getDebugLevel(Kernel::DISPLAY_ERROR)){
+            $this->registerWhoopsHandle();
         }
+        return $delegate->process($request);
     }
 
     private function registerWhoopsHandle()

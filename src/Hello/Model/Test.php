@@ -13,8 +13,8 @@ use LittlePeach\Base\Model;
 
 class Test extends Model
 {
-    public function test()
+    public function getTitle()
     {
-
+        return $this->loadDB()->selectFrom('*', 'site')->execute()->fetch();
     }
 }

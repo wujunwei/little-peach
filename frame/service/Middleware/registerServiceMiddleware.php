@@ -64,6 +64,7 @@ class registerServiceMiddleware implements MiddlewareInterface
             ];
             if (Kernel::getInstance()->getDebugLevel(Kernel::VIEW_DEBUG)){
                 $config['debug'] = true;
+                $config['cache'] = false;
                 $config['strict_variables'] = true;
             }
             return new Twig_Environment($loader, $config);

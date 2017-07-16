@@ -54,14 +54,20 @@ class Common
     static function getModuleName($class)
     {
         $reflection = new \ReflectionClass($class);
-        return $reflection->getNamespaceName();
+        $namespace = $reflection->getNamespaceName();
+        $namespaces = explode('\\', $namespace);
+        if (count($namespaces) > 2){
+            return "{$namespaces[0]}\\{$namespaces[1]}";
+        }else{
+            return $namespace;
+        }
     }
 
     static function getModuleNameSpace($class, $service, $module)
     {
         $path = explode('.', $service);
         if (count($path) == 1){
-            $namespace = self::getModuleName($class)."\\{$module}\\".$service;
+            $namespace = self::getModuleName($class)."\\{$module}\\{$service}";
         }else{
             $namespace = self::getAppRootNameSpace()."{$path[0]}\\{$module}\\{$path[1]}";
         }

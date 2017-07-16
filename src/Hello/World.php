@@ -15,8 +15,8 @@ class World extends Controller
 {
      public function say()
      {
-//         $name = $this->request->query->get('name', 'adam');
-         var_dump($this->loadBusiness('Test')->test()); 
-        return $this->createResponse(' hello, ');
+         var_dump( $this->loadBusiness('Test')->getTitle());
+         $page = $this->getView()->render('index.html', array('host' => 'hello'));
+         return $this->createResponse($page);
      }
 }

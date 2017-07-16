@@ -12,5 +12,8 @@ use LittlePeach\Base\Business;
 
 class Test extends Business
 {
-
+    public function getTitle()
+    {
+        return $this->loadModel('Test')->getTitle();
+    }
 }
