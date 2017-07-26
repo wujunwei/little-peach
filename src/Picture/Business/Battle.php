@@ -6,14 +6,20 @@
  * Date: 2017-07-13
  * Time: 下午 2:19
  */
-namespace App\Hello\Business;
+namespace App\Picture\Business;
 
 use LittlePeach\Base\Business;
 
 class Battle extends Business
 {
-    public function getTitle()
+    public function getLink($page = 0)
     {
-        return $this->loadModel('Test')->getTitle();
+        return $this->loadModel('Link')->getList($page, 30);
+    }
+
+    public function getCount()
+    {
+        $result =  $this->loadModel('Link')->getCount();
+        return $result['count'];
     }
 }

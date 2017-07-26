@@ -1,16 +1,16 @@
 
 {% if page_count > 0 %}
 <div class="pagnation" id="pagnation">
-	<a href="http://www.lanrentuku.com" target="_blank" class="page-prev">第一页</a>
+	<a href="?page=1" target="" class="page-prev">第一页</a>
 
 	{% for i in 1 .. page_count %}
 		{% if i == current_page %}
-			<a href="http://www.lanrentuku.com" target="_blank" class="current">{{ i }}</a>
+			<a href="?page={{ i }}" target="" class="current">{{ i }}</a>
 		{% else %}
-			<a href="http://www.lanrentuku.com" target="_blank" >{{ i }}</a>
+			<a href="?page={{ i }}" target="" >{{ i }}</a>
 		{% endif %}
 	{% endfor %}
-	<a href="http://www.lanrentuku.com" target="_blank" class="page-next">下一页</a>
+	<a href="?page={{ current_page+1 }}" target="" class="page-next">下一页</a>
 </div>
 
 {% endif %}

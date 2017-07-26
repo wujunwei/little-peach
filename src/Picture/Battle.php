@@ -15,7 +15,15 @@ class Battle extends Controller
 {
     public function getList()
     {
-        $message = $this->getView()->render('index.twig', array('page' => 12,'page_count' => 10, 'current_page' => 3, 'welcome' => '欢迎搜索'));
+        $page = $this->request->query->get('page', 1);
+        if ($page <= 1){
+            $page = 1;
+        }
+        $param['current_page'] = $page;
+        $param['img_list'] = $this->loadBusiness('Battle')->getLink($page - 1);
+        $param['welcome'] = 'haha';
+        $param['page_count'] = 15;//$this->loadBusiness('Battle')->getCount();
+        $message = $this->getView()->render('index.twig', $param);
         return $this->createResponse($message);
     }
 
