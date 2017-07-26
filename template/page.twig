@@ -1,0 +1,25 @@
+
+{% if page_count > 0 %}
+<div class="pagnation" id="pagnation">
+	<a href="http://www.lanrentuku.com" target="_blank" class="page-prev">第一页</a>
+
+	{% for i in 1 .. page_count %}
+		{% if i == current_page %}
+			<a href="http://www.lanrentuku.com" target="_blank" class="current">{{ i }}</a>
+		{% else %}
+			<a href="http://www.lanrentuku.com" target="_blank" >{{ i }}</a>
+		{% endif %}
+	{% endfor %}
+	<a href="http://www.lanrentuku.com" target="_blank" class="page-next">下一页</a>
+</div>
+
+{% endif %}
+<script>
+	var pagnation = $("#pagnation");
+	$(document).on("keydown",function(event){
+		switch(event.keyCode){
+			 case 37 : window.location.href = pagnation.find(".page-prev").attr("href");break;
+			 case 39 : window.location.href = pagnation.find(".page-next").attr("href");break
+		}
+	});
+</script>

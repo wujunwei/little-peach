@@ -1,0 +1,115 @@
+!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<link href='http://fonts.useso.com/css?family=Alegreya+SC:700,400italic' rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" type="text/css" href="css/lrtk.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <script src="js/modernizr.custom.97074.js"></script>
+        
+    </head>
+    <body>
+        <div class="container">
+			<header class="clearfix">
+				<span>Tips &amp; Tricks</span>
+				<h1>CSS3+jQuery鼠标跟随图片悬停效果</span></h1>
+				<nav class="codrops-demos">
+					<a class="current-demo" href="index.html">Default</a>
+					<a href="index2.html">Delay</a>
+					<a href="index3.html">Inverse</a>
+				</nav>
+				<p>Moving from one thumb to the other will immediately trigger the sliding of the info box.</p>
+			</header>
+			<section>
+				<ul id="da-thumbs" class="da-thumbs">
+					<li>
+						<a href="http://www.lanrentuku.com/">
+							<img src="images/1.jpg" />
+							<div><span>Menu by Simon Jensen</span></div>
+						</a>
+					</li>
+					<li>
+						<a href="http://www.lanrentuku.com/">
+							<img src="images/2.jpg" />
+							<div><span>TN Aquarium by Charlie Gann</span></div>
+						</a>
+					</li>
+					<li>
+						<a href="http://www.lanrentuku.com/">
+							<img src="images/3.jpg" />
+							<div><span>Mr. Crabs by John Generalov</span></div>
+						</a>
+					</li>
+					<li>
+						<a href="http://www.lanrentuku.com/">
+							<img src="images/4.jpg" />
+							<div><span>Gallery of Mo 2.Mo logo by Adam Campion</span></div>
+						</a>
+					</li>
+					<li>	
+						<a href="http://www.lanrentuku.com/">
+							<img src="images/5.jpg" />
+							<div><span>Ice Cream - nom nom by Eight Hour Day</span></div>
+						</a>
+					</li>
+					<li>
+						<a href="http://www.lanrentuku.com/">
+							<img src="images/6.jpg" />
+							<div><span>My Muse by Zachary Horst</span></div>
+						</a>
+					</li>
+					<li>
+						<a href="http://www.lanrentuku.com/">
+							<img src="images/7.jpg" />
+							<div><span>Natalie & Justin Cleaning by Justin Younger</span></div>
+						</a>
+					</li>
+					<li>
+						<a href="http://www.lanrentuku.com/">
+							<img src="images/8.jpg" />
+							<div><span>App Preview by Ryan Deshler</span></div>
+						</a>
+					</li>
+					<li>
+						<a href="http://www.lanrentuku.com/">
+							<img src="images/9.jpg" />
+							<div><span>Cornwall Map by Katharina Maria Zimmermann</span></div>
+						</a>
+					</li>
+					<li>
+						<a href="http://www.lanrentuku.com/">
+							<img src="images/10.jpg" />
+							<div><span>final AD logo by Annette Diana</span></div>
+						</a>
+					</li>
+					<li>
+						<a href="http://www.lanrentuku.com/">
+							<img src="images/11.jpg" />
+							<div><span>Land Those Planes by Lee Ann Marcel</span></div>
+						</a>
+					</li>
+					<li>
+						<a href="http://www.lanrentuku.com/">
+							<img src="images/12.jpg" />
+							<div><span>Seahorse by Trevor Basset</span></div>
+						</a>
+					</li>
+				</ul>
+			</section>
+        </div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.hoverdir.js"></script>	
+		<script type="text/javascript">
+			$(function() {
+			
+				$(' #da-thumbs > li ').each( function() { $(this).hoverdir({
+					hoverDelay : 50,
+					inverse : true
+				}); } );
+
+			});
+		</script>
+    </body>
+</html>

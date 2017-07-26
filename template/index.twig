@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <link href="/bootstrap/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/bootstrap/css/lrtk.css" rel="stylesheet" type="text/css" />
+    <script src="/bootstrap/js/modernizr.custom.97074.js"></script>
+    <script src="/bootstrap/js/classie.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/jquery.hoverdir.js"></script>
+    <script src="/bootstrap/js/uisearch.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/lrtk2.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/default.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/component.css" />
+    <script src="/bootstrap/js/modernizr.custom.js"></script>
+</head>
+<body>
+<div class="container">
+    <header class="clearfix">
+        <span>Tips &amp; Tricks</span>
+        <h1>{{ welcome }}</span></h1>
+        <nav class="codrops-demos">
+                <!-- Top Navigation -->
+                <div class="main clearfix">
+                    <!-- Optional columns for small components -->
+                    <div class="column">
+                        <div id="sb-search" class="sb-search">
+                            <form>
+                                <input class="sb-search-input" placeholder="Enter your search term..." type="text" value="" name="search" id="search">
+                                <input class="sb-search-submit" type="submit" value="">
+                                <span class="sb-icon-search"></span>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <script>
+                new UISearch( document.getElementById( 'sb-search' ) );
+            </script>
+        </nav>
+        <p>Moving from one thumb to the other will immediately trigger the sliding of the info box.</p>
+    </header>
+    <section>
+        <ul id="da-thumbs" class="da-thumbs">
+            <li>
+                <a href="/bootstrap/http://www.lanrentuku.com/">
+                    <img src="/bootstrap/images/1.jpg" />
+                    <div><span>Menu by Simon Jensen</span></div>
+                </a>
+            </li>
+            <li>
+                <a href="/bootstrap/http://www.lanrentuku.com/">
+                    <img src="/bootstrap/images/2.jpg" />
+                    <div><span>TN Aquarium by Charlie Gann</span></div>
+                </a>
+            </li>
+            <li>
+                <a href="/bootstrap/http://www.lanrentuku.com/">
+                    <img src="/bootstrap/images/3.jpg" />
+                    <div><span>Mr. Crabs by John Generalov</span></div>
+                </a>
+            </li>
+            <li>
+                <a href="/bootstrap/http://www.lanrentuku.com/">
+                    <img src="/bootstrap/images/4.jpg" />
+                    <div><span>Gallery of Mo 2.Mo logo by Adam Campion</span></div>
+                </a>
+            </li>
+            <li>
+                <a href="/bootstrap/http://www.lanrentuku.com/">
+                    <img src="/bootstrap/images/5.jpg" />
+                    <div><span>Ice Cream - nom nom by Eight Hour Day</span></div>
+                </a>
+            </li>
+            <li>
+                <a href="/bootstrap/http://www.lanrentuku.com/">
+                    <img src="/bootstrap/images/6.jpg" />
+                    <div><span>My Muse by Zachary Horst</span></div>
+                </a>
+            </li>
+            <li>
+                <a href="/bootstrap/http://www.lanrentuku.com/">
+                    <img src="/bootstrap/images/7.jpg" />
+                    <div><span>Natalie & Justin Cleaning by Justin Younger</span></div>
+                </a>
+            </li>
+            <li>
+                <a href="/bootstrap/http://www.lanrentuku.com/">
+                    <img src="/bootstrap/images/8.jpg" />
+                    <div><span>App Preview by Ryan Deshler</span></div>
+                </a>
+            </li>
+            <li>
+                <a href="/bootstrap/http://www.lanrentuku.com/">
+                    <img src="/bootstrap/images/9.jpg" />
+                    <div><span>Cornwall Map by Katharina Maria Zimmermann</span></div>
+                </a>
+            </li>
+            <li>
+                <a href="/bootstrap/http://www.lanrentuku.com/">
+                    <img src="/bootstrap/images/10.jpg" />
+                    <div><span>final AD logo by Annette Diana</span></div>
+                </a>
+            </li>
+            <li>
+                <a href="/bootstrap/http://www.lanrentuku.com/">
+                    <img src="/bootstrap/images/11.jpg" />
+                    <div><span>Land Those Planes by Lee Ann Marcel</span></div>
+                </a>
+            </li>
+            <li>
+                <a href="/bootstrap/http://www.lanrentuku.com/">
+                    <img src="/bootstrap/images/12.jpg" />
+                    <div><span>Seahorse by Trevor Basset</span></div>
+                </a>
+            </li>
+        </ul>
+    </section>
+</div>
+
+{% include 'page.twig' %}
+
+<script type="text/javascript">
+    $(function() {
+
+        $(' #da-thumbs > li ').each( function() { $(this).hoverdir(); } );
+
+    });
+</script>
+
+</body>
+</html>

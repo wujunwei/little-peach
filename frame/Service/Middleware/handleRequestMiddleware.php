@@ -45,7 +45,7 @@ class handleRequestMiddleware implements MiddlewareInterface
             if (!method_exists($_instance, $action)){
                 throw new \BadMethodCallException('Can not find it anywhere !');
             }
-        }catch (\Exception $e){
+        }catch (\BadMethodCallException $e){
             Log::getInstance()->onException($e);
             return new Response('Can not find it anywhere !', 404);
         }

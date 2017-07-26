@@ -1,0 +1,17 @@
+
+<title>{{ welcome }}</title>
+{% for letter in 'a'..'z' %}
+    * {{ letter }}
+{% endfor %}
+<br>
+{% for i in 0..max(4,page) %}
+    * {{ i }}
+{% endfor %}
+
+{% for i in 1 .. min(4, page) %}
+    {% if i == page %}
+        <a href="http://www.lanrentuku.com" target="_blank" class="current">{{ i }}</a>
+    {% else %}
+        <a href="http://www.lanrentuku.com" target="_blank" >{{ i }}</a>
+    {% endif %}
+{% endfor %}
