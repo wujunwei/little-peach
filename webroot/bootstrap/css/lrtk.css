@@ -40,7 +40,7 @@ a{
 .container{
 	width: 100%;
 	position: relative;
-	min-height: 750px;
+	height:auto;
 }
 .clr{
 	clear: both;

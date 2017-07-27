@@ -14,12 +14,16 @@ class Battle extends Business
 {
     public function getLink($page = 0)
     {
-        return $this->loadModel('Link')->getList($page, 30);
+        return $this->loadModel('Link')->getList($page, 16);
     }
 
     public function getCount()
     {
         $result =  $this->loadModel('Link')->getCount();
         return $result['count'];
+    }
+    public function search($key, $page = 0)
+    {
+        return $this->loadModel('Link')->getKeyWordList($key, $page, 16);
     }
 }

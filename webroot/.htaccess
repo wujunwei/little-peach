@@ -2,7 +2,7 @@ Options +SymLinksIfOwnerMatch
 RewriteEngine on
 
 #v+数字形式表示版本定位到脚本上
-RewriteRule ^/.*$ /index.php [L]
+RewriteRule ^.*$ /index.php [L]
 
 #非文件非目录定位到脚本上
 RewriteCond %{REQUEST_FILENAME} !-f

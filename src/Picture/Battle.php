@@ -32,4 +32,20 @@ class Battle extends Controller
         $message = $this->getView()->render('detail.twig', array('page' => 12, 'welcome' => '欢迎'));
         return $this->createResponse($message);
     }
+
+    public function search()
+    {
+        $page = $this->request->query->get('page', 1);
+        $key_word = $this->request->query->get('search', '');
+        if ($page <= 1){
+            $page = 1;
+        }
+        $param['current_page'] = $page;
+        $param['img_list'] = $this->loadBusiness('Battle')->search($key_word, $page - 1);
+        $param['key_word'] = $key_word;
+        $param['welcome'] = '搜索';
+        $param['page_count'] = 15;//$this->loadBusiness('Battle')->getCount();
+        $message = $this->getView()->render('index.twig', $param);
+        return $this->createResponse($message);
+    }
 }
