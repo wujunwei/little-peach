@@ -43,7 +43,7 @@
         <ul id="da-thumbs" class="da-thumbs">
             {% for url in img_list %}
             <li>
-                <a href="{{ url.url }}">
+                <a href="{{ url.img_url }}" target="_blank">
                     <img src="{{ url.img_url }}" height="165" width="220" alt="{{ url.id }}"/>
                     <div><span>{{ url.name }}</span></div>
                 </a>

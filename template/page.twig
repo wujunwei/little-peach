@@ -1,24 +1,30 @@
 
 {% if page_count > 0 %}
 <div class="pagnation" id="pagnation">
-	<a href="?page=1" target="" class="page-prev">第一页</a>
+	<a href="?page=1&search={{ key_word }}" target="" class="page-prev">第一页</a>
 	{% set start_dot_page = 10 %}
     {% set is_dot = 0 %}
     {% set end_dot_page = page_count - 5 %}
-
 	{% for i in 1 .. page_count %}
 
 		{% if i == current_page %}
-			<a href="?page={{ i }}" target="" class="current">{{ i }}</a>
-		{% elseif i < start_dot_page or i == current_page + 1 or i == current_page - 1 or i > end_dot_page %}
+
+			<a href="?page={{ i }}&search={{ key_word }}" target="" class="current">{{ i }}</a>
+
+		{% elseif i <= start_dot_page or i == current_page + 1 or i == current_page - 1 or i > end_dot_page %}
+
 			{% set is_dot = 1 %}
-			<a href="?page={{ i }}" target="" >{{ i }}</a>
+            {#{{ end_dot_page }},{{ start_dot_page }},{{ current_page }},{{ is_dot }},{{ i }}#}
+			<a href="?page={{ i }}&search={{ key_word }}" target="" >{{ i }}</a>
+
 		{% elseif is_dot == 1 %}
+
 			...
             {% set is_dot = 0 %}
+
 		{% endif %}
 	{% endfor %}
-	<a href="?page={{ current_page+1 }}" target="" class="page-next">下一页</a>
+	<a href="?page={{ current_page+1 }}&search={{ key_word }}" target="" class="page-next">下一页</a>
 </div>
 
 {% endif %}

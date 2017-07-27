@@ -22,7 +22,8 @@ class Battle extends Controller
         $param['current_page'] = $page;
         $param['img_list'] = $this->loadBusiness('Battle')->getLink($page - 1);
         $param['welcome'] = 'haha';
-        $param['page_count'] = 15;//$this->loadBusiness('Battle')->getCount();
+        $param['key_word']='';
+        $param['page_count'] = $this->loadBusiness('Battle')->getCount()/100;
         $message = $this->getView()->render('index.twig', $param);
         return $this->createResponse($message);
     }
@@ -44,6 +45,7 @@ class Battle extends Controller
         $param['img_list'] = $this->loadBusiness('Battle')->search($key_word, $page - 1);
         $param['key_word'] = $key_word;
         $param['welcome'] = '搜索';
+        $param['key_word'] = $key_word;
         $param['page_count'] = 15;//$this->loadBusiness('Battle')->getCount();
         $message = $this->getView()->render('index.twig', $param);
         return $this->createResponse($message);

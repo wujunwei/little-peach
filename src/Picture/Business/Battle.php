@@ -14,7 +14,7 @@ class Battle extends Business
 {
     public function getLink($page = 0)
     {
-        return $this->loadModel('Link')->getList($page, 16);
+        return $this->loadModel('Link')->getList($page, 100);
     }
 
     public function getCount()
@@ -24,6 +24,6 @@ class Battle extends Business
     }
     public function search($key, $page = 0)
     {
-        return $this->loadModel('Link')->getKeyWordList($key, $page, 16);
+        return $this->loadModel('Link')->getKeyWordList($key, $page, 100);
     }
 }
