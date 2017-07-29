@@ -24,7 +24,7 @@
 
 		{% endif %}
 	{% endfor %}
-	<a href="?page={{ current_page+1 }}&search={{ key_word }}" target="" class="page-next">下一页</a>
+	<a href="?page={{    min(current_page+1, page_count) }}&search={{ key_word }}" target="" class="page-next">下一页</a>
 </div>
 
 {% endif %}

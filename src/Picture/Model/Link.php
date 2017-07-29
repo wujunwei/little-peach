@@ -18,9 +18,15 @@ class Link extends Model
         return $this->loadDB()->selectFrom('*', 'link')->setFirstResult($page * $size)->setMaxResults($size)->execute()->fetchAll();
     }
 
-    public function getCount()
+    public function getKeyWordCount($key_word)
     {
-        return $this->loadDB()->selectFrom('*', 'link')->select('count(*) as count')->execute()->fetch();
+        $info = $this->loadDB()
+            ->selectFrom('count(*) as count', 'link');
+        if (empty($key_word)){
+            return $info->execute()->fetch();
+        }
+        return $info->where("name like '%{$key_word}%'")
+            ->execute()->fetch();
     }
     public function getKeyWordList($key, $page, $size)
     {

@@ -16,14 +16,15 @@ class Battle extends Controller
     public function getList()
     {
         $page = $this->request->query->get('page', 1);
+        $page_size = $this->request->query->get('page_size', 100);
         if ($page <= 1){
             $page = 1;
         }
         $param['current_page'] = $page;
-        $param['img_list'] = $this->loadBusiness('Battle')->getLink($page - 1);
+        $param['img_list'] = $this->loadBusiness('Battle')->getLink($page - 1, $page_size);
         $param['welcome'] = 'haha';
         $param['key_word']='';
-        $param['page_count'] = $this->loadBusiness('Battle')->getCount()/100;
+        $param['page_count'] = ceil($this->loadBusiness('Battle')->getCount()/$page_size);
         $message = $this->getView()->render('index.twig', $param);
         return $this->createResponse($message);
     }
@@ -38,15 +39,16 @@ class Battle extends Controller
     {
         $page = $this->request->query->get('page', 1);
         $key_word = $this->request->query->get('search', '');
+        $page_size = $this->request->query->get('page_size', 100);
         if ($page <= 1){
             $page = 1;
         }
         $param['current_page'] = $page;
-        $param['img_list'] = $this->loadBusiness('Battle')->search($key_word, $page - 1);
+        $param['img_list'] = $this->loadBusiness('Battle')->search($key_word, $page - 1, $page_size);
         $param['key_word'] = $key_word;
         $param['welcome'] = '搜索';
         $param['key_word'] = $key_word;
-        $param['page_count'] = 15;//$this->loadBusiness('Battle')->getCount();
+        $param['page_count'] = ceil($this->loadBusiness('Battle')->getCount($key_word) / $page_size);
         $message = $this->getView()->render('index.twig', $param);
         return $this->createResponse($message);
     }
