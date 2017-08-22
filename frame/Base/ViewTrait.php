@@ -11,6 +11,7 @@ use LittlePeach\Service\Kernel;
 use Twig_Environment;
 
 trait ViewTrait{
+    private $context = array();
     /**
      * @var Twig_Environment
      */
@@ -24,4 +25,21 @@ trait ViewTrait{
         $this->component = Kernel::getInstance()->getContainer()->get('twig');
         return $this->component;
     }
+
+    public function addToContext($key, $obj)
+    {
+        $key = strval($key);
+        $context[$key] = $obj;
+    }
+
+    public function getContent($template = '')
+    {
+        return $this->component->render($template, $this->context);
+    }
+
+    public function display($template = '')
+    {
+        $this->component->display($template, $this->context);
+    }
+
 }
