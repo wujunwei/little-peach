@@ -11,7 +11,6 @@ namespace LittlePeach\Service\Middleware;
 
 use LittlePeach\Interfaces\DelegateInterface;
 use LittlePeach\Interfaces\MiddlewareInterface;
-use LittlePeach\library\Log;
 use LittlePeach\Service\Kernel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
