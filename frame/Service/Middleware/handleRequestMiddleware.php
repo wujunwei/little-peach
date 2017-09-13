@@ -18,6 +18,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class handleRequestMiddleware implements MiddlewareInterface
 {
+    const DEFAULT_ACTION = 'Index';
+    const DEFAULT_CLASS = 'Index';
+    const DEFAULT_MODULE = 'Home';
     /** var_dump($request->getUri());
      *  var_dump($request->getRequestUri());
      *  var_dump($request->getPathInfo());
@@ -34,11 +37,12 @@ class handleRequestMiddleware implements MiddlewareInterface
     )
     {
         $pathInfo = explode('/', trim($request->getPathInfo(), '/ '));
-        if (count($pathInfo) < 3){
-            return new Response('', Response::HTTP_FORBIDDEN);
+        if (count($pathInfo) < 2){
+            $pathInfo[] = self::DEFAULT_MODULE;
         }
-        $pathInfo = array_map([$this, 'dealStr'], $pathInfo);
-        list($module, $class, $action) = $pathInfo;
+        $module = $this->dealStr(array_pop($pathInfo)? : self::DEFAULT_MODULE);
+        $class = $this->dealStr(array_pop($pathInfo)? : self::DEFAULT_CLASS);
+        $action = array_pop($pathInfo)? : self::DEFAULT_ACTION;
         $wholeName = Common::getAppRootNameSpace()."{$module}\\{$class}";
         try{
             $_instance = Kernel::getInstance()->getContainer()->get($wholeName, [$request]);
