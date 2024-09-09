@@ -9,7 +9,7 @@
         "filp/whoops": "^2.1",
         "doctrine/dbal": "^2.5",
         "cakephp/i18n": "^3.2",
-        "twig/twig": "1.44.7"
+        "twig/twig": "1.44.8"
     },
     "license": "MIT",
     "autoload": {
